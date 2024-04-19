@@ -1,0 +1,56 @@
+	<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+	<div class="container">	
+
+	<h2>Gestor de eventos</h2>
+	
+	<form action="/adicionar" method = "post">
+		<div class="row">
+			<div class="col">
+				<input type="text" id="evento" class="form-control" placeholder="Evento" name="evento">
+			</div>
+		  	<div class="col">
+				<input type="date" id="dtevento" class="form-control" placeholder="Data do evento" name="dtEvento">
+			</div>
+			<div class="col">
+		  		<input type="submit" class="btn btn-success" value="Adicionar">
+			</div>
+		</div>
+	</form> 
+	
+	<table class="table table-striped mt-3">
+	  <tr align="center">
+	    <th>Evento</th>
+	    <th>Data do evento</th>
+	    <th>Data de cadastro</th>
+	    <th>Data de encerramento</th>
+	    <th>Status</th>
+	    <th>Ações</th>
+	    <th></th>
+	  </tr>
+	  <tr align="center" th:each = "evento : ${eventos}">
+	    <td th:text = ${evento.evento}></td>
+	    <td th:text = ${evento.dtEvento}></td>
+	    <td th:text = ${evento.dtCadastro}></td>
+	    <td th:text = ${evento.dtCadastro}></td>
+	    <td th:text = ${evento.dtEncerramento}></td>
+	    <td th:text = ${evento.status}></td>
+		<td>
+			<a th:href="@{/encerrar/{id}(id = ${evento.id})}" class="btn btn-primary">Encerrar</a>
+	    	<a href="/editar" class="btn btn-warning">Editar</a>
+	    	<a th:href="@{/excluir/{id}(id = ${evento.id})}" class="btn btn-danger">Excluir</a>
+	    </td>
+	  </tr>
+	  
+	</table>
+</div>	
+</body>
+</html>
